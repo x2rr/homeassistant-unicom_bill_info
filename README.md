@@ -1,0 +1,2 @@
+# homeassistant-unicom_bill_info
+homeassistant中的联通话费信息集成-需要小程序抓取openid
