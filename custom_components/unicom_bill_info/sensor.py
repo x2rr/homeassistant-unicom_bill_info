@@ -111,7 +111,12 @@ class UnicomBillSensor(Entity):
                             self._state = float(re.sub(r'[^\d.]', '', value))
                         elif self._data_key == "x_used_value_data_2":
                             value = data["data"][2]["X_USED_VALUE"]
-                            self._state = float(re.sub(r'[^\d.]', '', value))
+                            num = float(re.sub(r'[^\d.]', '', value))
+                            if "MB" in value:
+                                # 将MB转换为GB
+                                self._state = num / 1024
+                            else:
+                                self._state = num
                         elif self._data_key == "x_canuse_value_data_0":
                             value = data["data"][0]["X_CANUSE_VALUE"]
                             self._state = float(re.sub(r'[^\d.]', '', value))
@@ -135,6 +140,8 @@ class UnicomBillSensor(Entity):
                             used_flow_str = data["data"][2]["X_USED_VALUE"]
                             total_flow_str = data["data"][2]["ADDUP_UPPER"]
                             used_flow = float(re.sub(r'[^\d.]', '', used_flow_str))
+                            if "MB" in used_flow_str:
+                                used_flow = used_flow / 1024
                             total_flow = float(re.sub(r'[^\d.]', '', total_flow_str))
                             if total_flow > 0:
                                 self._state = round((used_flow / total_flow) * 100, 2)
