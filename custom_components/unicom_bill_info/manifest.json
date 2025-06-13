@@ -1,11 +1,11 @@
 {
     "domain": "unicom_bill_info",
     "name": "联通话费信息",
-    "version": "1.0.0",
-    "documentation": "https://github.com/hlhk2017/homeassistant-unicom_bill_info",
+    "version": "1.0.1",
+    "documentation": "https://github.com/x2rr/homeassistant-unicom_bill_info",
     "requirements": ["aiohttp>=3.8.1"],
     "dependencies": [],
-    "codeowners": ["@hlhk2017"],
+    "codeowners": ["@x2rr"],
     "config_flow": true,
     "iot_class": "cloud_polling",
     "loggers": ["unicom_bill_info"]
